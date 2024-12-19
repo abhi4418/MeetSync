@@ -14,7 +14,7 @@ export function Header() {
             width={100}
             height={80}
             alt="Meetsync Logo"
-            className="" />
+            className="w-auto" />
         </Link>
 
         <div className="flex items-center gap-4">
