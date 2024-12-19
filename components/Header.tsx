@@ -7,14 +7,14 @@ import { UserMenu } from "./user-menu";
 
 export function Header() {
   return (
-    <nav className="mx-auto py-2 px-4 flex justify-between items-center shadow-md border-b-2">
+    <nav className="mx-auto px-4 flex justify-between items-center shadow-md border-b-2">
         <Link href={'/'} className="flex items-center">
             <Image
             src='/logo.png'
-            width="150"
-            height="60"
+            width={100}
+            height={80}
             alt="Meetsync Logo"
-            className="w-auto h-16" />
+            className="" />
         </Link>
 
         <div className="flex items-center gap-4">

@@ -30,7 +30,7 @@ export default function RootLayout({
           {/* Footer */}
           <footer className="bg-blue-100 py-12">
             <div className="container mx-auto px-4 text-center text-gray-600">
-              <p>©2024 Meetings App</p>
+              <p>©2024 MeetSync</p>
             </div>
           </footer>
         </body>
