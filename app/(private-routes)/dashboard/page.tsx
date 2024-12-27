@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form"
 import {zodResolver} from '@hookform/resolvers/zod'
 import { usernameSchema } from "@/app/lib/validators";
 import { useEffect } from "react";
+import { useFetch } from "@/hooks/use-fetch";
+import { updateUsername } from "@/actions/users";
+import { BarLoader } from "react-spinners";
 
 export default function(){
     const {isLoaded , user} = useUser() ;
@@ -19,8 +22,10 @@ export default function(){
         setValue("username" , user?.username)
     } , [isLoaded])
 
-    const onSubmit = async (data : any) =>{
+    const {loading , error , fn : fnUpdateUsername} = useFetch(updateUsername) ;
 
+    const onSubmit = async (data : any) =>{
+        fnUpdateUsername(data.username) ;
     }
 
     return <div className="space-y-8">
@@ -46,11 +51,14 @@ export default function(){
                         </div>                        
                         {errors.username && (
                             <p className="text-red-500 text-sm mt-1">
-                            {/* @ts-ignore */}
-                            {errors.username.message}
+                            {errors.username.message as string}
                             </p>
                         )}
+                        {error && (
+                        <p className="text-red-500 text-sm mt-1">{error?.message}</p>
+                        )}
                     </div>
+                    {loading && <BarLoader className="mb-4" width={"100%"} color={"#36d7b7"} />}
                     <Button type="submit">
                         Update Username
                     </Button>

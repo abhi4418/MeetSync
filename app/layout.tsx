@@ -3,6 +3,7 @@ import { Inter} from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import {ClerkProvider} from "@clerk/nextjs";
+import { CreateEventDrawer } from "@/components/create-event";
 
 export const metadata: Metadata = {
   title: "MeetSync",
@@ -33,6 +34,9 @@ export default function RootLayout({
               <p>©2024 MeetSync</p>
             </div>
           </footer>
+
+          {/* create event drawer */}
+          <CreateEventDrawer />
         </body>
       </html>
     </ClerkProvider>
