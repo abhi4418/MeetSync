@@ -17,7 +17,7 @@ export function EventForm({onSubmitForm} : {
         resolver : zodResolver(eventSchema),
         defaultValues : {
             duration : 30,
-            isPrivate : "true",
+            isPrivate : true ,
             title : "" ,
             description : ""
         }
