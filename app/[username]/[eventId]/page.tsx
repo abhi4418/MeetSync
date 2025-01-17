@@ -6,12 +6,12 @@ import { BookingForm } from "./_components/booking-form";
 import { getEventAvailability } from "@/actions/availability";
 
 export async function generateMetadata({params} : {
-    params : {
+    params : Promise<{
         username : string ,
-        eventId : string
-    }
+        eventId : string ,
+    }>
 }) {
-    const { username, eventId } = params;
+    const { username, eventId } = await params;
     const event = await getEventDetails(username , eventId) ;
     if(!event){
         return  {
@@ -26,12 +26,12 @@ export async function generateMetadata({params} : {
 }
 
 export default async function ({params} : {
-    params : {
+    params : Promise<{
         username : string ,
-        eventId : string
-    }
+        eventId : string ,
+    }>
 }){
-    const { username, eventId } = params;
+    const { username, eventId } = await params;
     const event = await getEventDetails(username , eventId) ;
     const availability = await getEventAvailability(eventId) ;
     if(!event){

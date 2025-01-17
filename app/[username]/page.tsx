@@ -4,9 +4,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({params} : {
-    params : {
-        username : string
-    }
+    params : Promise<{
+        username : string ,
+    }>
 }) {
     const {username} = await params ;
     const user = await getUserByUserName(username) ;
@@ -23,9 +23,9 @@ export async function generateMetadata({params} : {
 }
 
 export default async function UserPage({params} : {
-    params : {
-        username : string
-    }
+    params : Promise<{
+        username : string ,
+    }>
 }){
     const {username} = await params ;
     const user = await getUserByUserName(username) ;

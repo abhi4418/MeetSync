@@ -27,7 +27,7 @@ export function CreateEventDrawer() {
   const handleClose = () => {
     setIsOpen(false) ;
     if(searchParams.get("create") === "true"){
-        router.replace(window.location.pathname)
+        router.replace(window?.location.pathname)
     }
   }
 

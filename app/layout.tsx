@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import {ClerkProvider} from "@clerk/nextjs";
 import { CreateEventDrawer } from "@/components/create-event";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "MeetSync",
@@ -36,7 +37,9 @@ export default function RootLayout({
           </footer>
 
           {/* create event drawer */}
-          <CreateEventDrawer />
+          <Suspense>
+            <CreateEventDrawer />
+          </Suspense>
         </body>
       </html>
     </ClerkProvider>
