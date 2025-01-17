@@ -8,7 +8,7 @@ export async function generateMetadata({params} : {
         username : string
     }
 }) {
-    const {username} = params ;
+    const {username} = await params ;
     const user = await getUserByUserName(username) ;
     if(!user){
         return  {
@@ -27,7 +27,7 @@ export default async function UserPage({params} : {
         username : string
     }
 }){
-    const {username} = params ;
+    const {username} = await params ;
     const user = await getUserByUserName(username) ;
     if(!user){
         notFound() ;
@@ -51,7 +51,7 @@ export default async function UserPage({params} : {
         ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {user.events.map((event)=>{
-                    //@ts-ignore
+                    //@ts-expect-error
                     return <EventCard key={event.id} event = {event}
                     username={username}
                     isPublic />

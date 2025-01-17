@@ -37,7 +37,6 @@ export async function getAvailability() {
         "sunday"
     ].forEach(day => {
         const dayAvailability = user.availability?.days.find((d) => d.day === day.toUpperCase()) ;
-        // @ts-ignore
         availabilityData[day] = {
             isAvailable : !!dayAvailability ,
             startTime : dayAvailability ? dayAvailability.startTime.toISOString().slice(11,16) :
@@ -141,7 +140,10 @@ export async function getEventAvailability(eventId : string){
     const startDate = startOfDay(new Date()) ;
     const endDate = addDays(startDate , 30) ;
 
-    const availableDates = [] ;
+    const availableDates : {
+        date : string ,
+        slots : string[]
+    }[] = [] ;
     
     for(let date = startDate ; date <= endDate ; date = addDays(date , 1)){
         const dayofWeek = format(date , "EEEE").toUpperCase();
@@ -184,7 +186,7 @@ const generateAvailableTimeSlots = (
     timeGap = 0
 ) =>{
 
-    const slots = [];
+  const slots : string[] = [];
   let currentTime = parseISO(
     `${dateStr}T${startTime.toISOString().slice(11, 16)}`
   );

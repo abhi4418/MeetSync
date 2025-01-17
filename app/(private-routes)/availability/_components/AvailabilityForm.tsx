@@ -114,10 +114,10 @@ export function AvailabilityForm({ initialData } : any) {
                     </Select>
                   )}
                 />
-                {/* @ts-ignore */}
+                {/* @ts-expect-error */}
                 {errors[day]?.endTime && (
                   <span className="text-red-500 text-sm ml-2">
-                    {/* @ts-ignore */}
+                    {/* @ts-expect-error */}
                     {errors[day].endTime.message}
                   </span>
                 )}

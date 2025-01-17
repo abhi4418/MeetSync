@@ -10,7 +10,7 @@ import { deleteEvent } from "@/actions/events"
 
 export function EventCard({event , username , isPublic=false} : {
     event : Event & {_count : {bookings : number}}
-    username : String | null
+    username : string | null
     isPublic? : boolean
 }) {
 
