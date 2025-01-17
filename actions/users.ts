@@ -33,3 +33,37 @@ export async function updateUsername(username : string){
 
     return  {succcess : true} ;
 }
+
+export async function getUserByUserName(username : string){
+    const user = await db.user.findUnique({
+        where : {
+            username
+        } ,
+        select : {
+            id : true ,
+            name : true ,
+            email : true ,
+            imageUrl : true ,
+            events : {
+                where : {
+                    isPrivate : false
+                } ,
+                orderBy : {
+                    createdAt : "desc"
+                } ,
+                select : {
+                    id : true ,
+                    title : true ,
+                    description : true ,
+                    duration : true ,
+                    isPrivate : true ,
+                    _count : {
+                        select : {bookings : true}
+                    }
+                }
+            }
+        }
+    }) 
+
+    return user ;
+}

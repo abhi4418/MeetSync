@@ -3,7 +3,7 @@ import { Event } from "@prisma/client"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card"
 import { Button } from "./ui/button"
 import { Link, Trash2 } from "lucide-react"
-import { useState } from "react"
+import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useFetch } from "@/hooks/use-fetch"
 import { deleteEvent } from "@/actions/events"
@@ -37,8 +37,15 @@ export function EventCard({event , username , isPublic=false} : {
         }
     }
 
+    const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        const target = e.target as HTMLElement;
+        if (target.tagName !== "BUTTON" && target.tagName !== "SVG") {
+            window?.open(`${window.location.origin}/${username}/${event.id}`, "_blank");
+        }
+    };
+
     return <div>
-        <Card className="flex flex-col justify-between cursor-pointer">
+        <Card onClick={handleCardClick} className="flex flex-col justify-between cursor-pointer">
         <CardHeader>
             <CardTitle className="text-2xl">{event.title}</CardTitle>
             <CardDescription className="flex justify-between">
